@@ -12,7 +12,7 @@ export default function Parallax() {
   });
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const textY = useTransform(scrollYProgress, [0, 10], ["0%", "100%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <div
@@ -20,13 +20,29 @@ export default function Parallax() {
      className="w-full relative h-[115vh] overflow-hidden grid place-items-center">
       <motion.h1
         style={{ y: textY }}
-        className="absolute bottom-2/4 font-bold text-white text-9xl md:-[12rem] z-10"
+        className="absolute bottom-2/3 font-bold text-white text-9xl md:-[12rem] z-10"
       >
-        TULUNGAGUNG
+        PROGRAM
       </motion.h1>
-      <motion.div className="absolute inset-0 z-0 bg-[url('/image-full.png')] bg-bottom bg-cover"/>
 
-      <div className="absolute inset-0 z-20 bg-[url('/image-remove.png')] bg-bottom bg-cover"/>
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: "url(/bg-tugu.webp)",
+          backgroundPosition: "bottom",
+          backgroundSize: "cover",
+          y: backgroundY,
+        }}
+      />
+      <div
+        className="absolute inset-0 z-20"
+        style={{
+          backgroundImage: `url(/tugu.webp)`,
+          backgroundPosition: "bottom",
+          backgroundSize: "cover",
+        }}
+      />
     </div>
   );
 }
+
