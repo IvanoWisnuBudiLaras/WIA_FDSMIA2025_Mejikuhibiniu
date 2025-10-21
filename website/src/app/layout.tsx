@@ -1,5 +1,6 @@
 // src/app/layout.tsx
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,7 +15,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black text-white">{children}</body>
+      <body className="bg-black text-white">
+        {children}
+        <SmoothScroll />
+      </body>
     </html>
   );
 }
