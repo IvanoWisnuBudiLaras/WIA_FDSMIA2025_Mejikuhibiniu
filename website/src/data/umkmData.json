@@ -1,0 +1,31 @@
+{
+  "umkmList": [
+    {
+      "id": 1,
+      "nama": "Warung Sari Murni",
+      "kategori": "Kuliner",
+      "deskripsi": "Warung makan tradisional yang menyajikan masakan khas Tulungagung dengan resep turun-temurun",
+      "gambar": "/UMKM1.png",
+      "lokasi": "Kedungwaru, Tulungagung",
+      "tahunBerdiri": "2018"
+    },
+    {
+      "id": 2,
+      "nama": "Kerajinan Alam Jaya",
+      "kategori": "Kerajinan",
+      "deskripsi": "Home industry kerajinan anyaman bambu yang menghasilkan berbagai produk dekoratif dan fungsional",
+      "gambar": "/UMKM1.png",
+      "lokasi": "Boyolangu, Tulungagung",
+      "tahunBerdiri": "2015"
+    },
+    {
+      "id": 3,
+      "nama": "Tahu Campur Bu Sum",
+      "kategori": "Makanan Ringan",
+      "deskripsi": "Produsen tahu campur khas Tulungagung yang sudah dikenal luas dengan cita rasa autentik",
+      "gambar": "/UMKM1.png",
+      "lokasi": "Tulungagung Kota",
+      "tahunBerdiri": "2020"
+    }
+  ]
+}

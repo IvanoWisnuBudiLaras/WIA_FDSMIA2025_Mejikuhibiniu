@@ -1,6 +1,5 @@
 // src/app/layout.tsx
 import "./globals.css";
-import SmoothScroll from "@/components/SmoothScroll";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -16,8 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    
     <html lang="en">
-      <body className="bg-black text-white">{children}</body>
+      <body className="bg-white text-black">{children}</body>
     </html>
   );
 }
