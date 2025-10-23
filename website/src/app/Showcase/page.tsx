@@ -3,8 +3,9 @@
 import Image from "next/image";
 import React from 'react'
 import umkmData from '../../data/umkmData.json';
+import { Transition } from "@/components/transtition";
 
-export default function Showcase() {
+export function Showcase() {
   // Data UMKM Tulungagung - showcase profil usaha
   const { umkmList } = umkmData;
   return (
@@ -54,5 +55,13 @@ export default function Showcase() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function ShowcaseWithTransition() {
+  return (
+    <Transition pageIndex={1}>
+      <Showcase />
+    </Transition>
   );
 }

@@ -5,7 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Framer Parallax | Next 15",
+  title: "UMKM Tulungagung Showcase",
   description: "Modern parallax scroll effect using Framer Motion + Next.js App Router",
 };
 

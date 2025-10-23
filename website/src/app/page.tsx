@@ -1,37 +1,85 @@
-import { BookmarkIcon, HeartIcon, StarIcon } from "lucide-react"
+"use client";
+import Link from "next/link";
+import { Transition } from "@/components/transtition";
 
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+// MAINTENANCE: Home page with enhanced transition animation
+// Demonstrates various transition effects
 
-export function ToggleGroupSpacing() {
+export function HomePageTransition() {
   return (
-    <ToggleGroup type="multiple" variant="outline" spacing={2} size="sm">
-      <ToggleGroupItem
-        value="star"
-        aria-label="Toggle star"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-yellow-500 data-[state=on]:*:[svg]:stroke-yellow-500"
-      >
-        <StarIcon />
-        Star
-      </ToggleGroupItem>
-      <ToggleGroupItem
-        value="heart"
-        aria-label="Toggle heart"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-red-500 data-[state=on]:*:[svg]:stroke-red-500"
-      >
-        <HeartIcon />
-        Heart
-      </ToggleGroupItem>
-      <ToggleGroupItem
-        value="bookmark"
-        aria-label="Toggle bookmark"
-        className="data-[state=on]:bg-transparent data-[state=on]:*:[svg]:fill-blue-500 data-[state=on]:*:[svg]:stroke-blue-500"
-      >
-        <BookmarkIcon />
-        Bookmark
-      </ToggleGroupItem>
-    </ToggleGroup>
-  )
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col items-center justify-center p-8">
+      <div className="text-center space-y-8 max-w-2xl">
+        <h1 className="text-4xl font-bold text-slate-800 mb-2">
+          Transisi Halaman
+        </h1>
+        <p className="text-slate-600 mb-8">
+          Pilih arah transisi untuk melihat efek menimbun halaman
+        </p>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <Link 
+            href="/Showcase" 
+            className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200"
+          >
+            <div className="text-lg font-semibold text-slate-800 mb-2">
+              ⬅️ Slide Kiri
+            </div>
+            <p className="text-sm text-slate-600">
+              Transisi menggelinding ke kiri
+            </p>
+          </Link>
+          
+          <Link 
+            href="/Showcase" 
+            className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200"
+          >
+            <div className="text-lg font-semibold text-slate-800 mb-2">
+              ➡️ Slide Kanan
+            </div>
+            <p className="text-sm text-slate-600">
+              Transisi menggelinding ke kanan
+            </p>
+          </Link>
+          
+          <Link 
+            href="/Showcase" 
+            className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200"
+          >
+            <div className="text-lg font-semibold text-slate-800 mb-2">
+              ⬆️ Slide Atas
+            </div>
+            <p className="text-sm text-slate-600">
+              Transisi menggelinding ke atas
+            </p>
+          </Link>
+          
+          <Link 
+            href="/Showcase" 
+            className="group p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-200"
+          >
+            <div className="text-lg font-semibold text-slate-800 mb-2">
+              ⬇️ Slide Bawah
+            </div>
+            <p className="text-sm text-slate-600">
+              Transisi menggelinding ke bawah
+            </p>
+          </Link>
+        </div>
+        
+        <div className="mt-8 p-4 bg-slate-800 text-white rounded-lg">
+          <p className="text-sm">
+            💡 Transisi sekarang menggunakan efek slide yang menutupi seluruh halaman
+          </p>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Transition pageIndex={0}>
+      <HomePageTransition />
+    </Transition>
+  );
 }
