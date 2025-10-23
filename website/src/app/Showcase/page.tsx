@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from 'react'
 import umkmData from '../../data/umkmData.json';
-import { Transition } from "@/components/transtition";
+import PageTransition from "@/components/Effect/PageTransition";
 
 export function Showcase() {
   // Data UMKM Tulungagung - showcase profil usaha
@@ -60,8 +60,8 @@ export function Showcase() {
 
 export default function ShowcaseWithTransition() {
   return (
-    <Transition pageIndex={1}>
+    <PageTransition>
       <Showcase />
-    </Transition>
+    </PageTransition>
   );
 }

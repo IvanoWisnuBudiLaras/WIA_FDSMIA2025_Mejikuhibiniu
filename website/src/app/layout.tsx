@@ -1,8 +1,9 @@
 // src/app/layout.tsx
-import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {Inter } from "next/font/google";
 import "./globals.css";
+import PageTransition from "@/components/Effect/PageTransition";
+
 
 export const metadata: Metadata = {
   title: "UMKM Tulungagung Showcase",
@@ -17,7 +18,12 @@ export default function RootLayout({
   return (
     
     <html lang="en">
-      <body className="bg-white text-black">{children}</body>
+      <body className={` text-[var(--text-color)] antialiased`}>
+        <PageTransition>
+          <main className="page-content">{children}</main>
+        </PageTransition>
+      </body>
+      
     </html>
   );
 }

@@ -2,3 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+:root{
+    --Background:rgb(96, 181, 255);
+    --Second-bg:rgb(175, 221, 255);
+    --Object:rgb(255, 236, 219);
+    --Second-obj:rgb(255, 145, 73);
+    --Text-color:rgb(244, 233, 215);
+    --Text-Dark:rgb(55, 53, 62);
+    --Hyper-text:rgb(229, 80, 80);
+}
+
+/* Berlaku untuk semua browser modern */
+html, body {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+@keyframes waveFast {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-6px);
+  }
+  50% {
+    transform: translateY(3px);
+  }
+  75% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Agar huruf tidak menumpuk */
+nav ul li a span {
+  display: inline-block;
+  transition: transform 0.1s ease;
+}
+
+/* Saat hover, tiap huruf bergelombang dengan delay berbeda */
+.group:hover span {
+  animation: waveFast 0.1s ease-in-out;
+}
+
+
+
+
