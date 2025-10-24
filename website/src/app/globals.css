@@ -1,56 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root{
-    --Background:rgb(96, 181, 255);
-    --Second-bg:rgb(175, 221, 255);
-    --Object:rgb(255, 236, 219);
-    --Second-obj:rgb(255, 145, 73);
-    --Text-color:rgb(244, 233, 215);
-    --Text-Dark:rgb(55, 53, 62);
-    --Hyper-text:rgb(229, 80, 80);
+/* Root dan body */
+body {
+  margin: 0;
+  background: #fff;
+  color: #111;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
 }
 
-/* Berlaku untuk semua browser modern */
-html, body {
-  overflow: auto;
-  scrollbar-width: none; /* Firefox */
+/* Bagian atas (judul besar) */
+.showcase-header {
+  position: fixed;
+  top: 12vh;
+  left: 6vw;
+  z-index: 10;
 }
 
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
-}
-@keyframes waveFast {
-  0% {
-    transform: translateY(0);
-  }
-  25% {
-    transform: translateY(-6px);
-  }
-  50% {
-    transform: translateY(3px);
-  }
-  75% {
-    transform: translateY(-3px);
-  }
-  100% {
-    transform: translateY(0);
-  }
+.showcase-header h1 {
+  font-size: clamp(3rem, 10vw, 9rem);
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  margin: 0;
 }
 
-/* Agar huruf tidak menumpuk */
-nav ul li a span {
-  display: inline-block;
-  transition: transform 0.1s ease;
+.showcase-header p {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  color: #555;
 }
 
-/* Saat hover, tiap huruf bergelombang dengan delay berbeda */
-.group:hover span {
-  animation: waveFast 0.1s ease-in-out;
+/* Container horizontal */
+.hs-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  margin-top: 40vh; /* beri jarak agar teks atas terlihat */
 }
 
+.hs-track {
+  display: flex;
+  height: 50vh; /* tinggi setengah layar */
+  will-change: transform;
+  margin-top: 25vh;
+}
 
+/* Slide */
+.hs-slide {
+  min-width: 70vw;
+  height: 100%;
+  margin-right: 8vw;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+}
 
+.hs-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
+  transition: transform 0.6s ease;
+}
 
+.hs-caption {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  color: white;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.hs-caption h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hs-caption p {
+  margin-top: 0.3rem;
+  font-size: 1rem;
+}
+
+/* Hilangkan scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useAnimate } from "motion/react";
+import { motion, useAnimate } from "framer-motion";
 import { useEffect } from "react";
 
 interface TextAnimatedProps {
@@ -15,24 +15,24 @@ export default function TextAnimated({ text }: TextAnimatedProps) {
     const el = scope.current as HTMLElement;
     if (!el) return;
 
-    // Reset posisi huruf
     el.querySelectorAll("span").forEach((span) => {
       (span as HTMLElement).style.transform = "translateY(0px)";
     });
   }, [scope]);
 
-  const handleHoverStart = () => {
+  const handleHoverStart = async () => {
     const el = scope.current as HTMLElement;
     if (!el) return;
 
     const spans = el.querySelectorAll("span");
-    spans.forEach((span, i) => {
-      animate(
-        span,
+    for (let i = 0; i < spans.length; i++) {
+      // Pakai properti virtual 'y'
+      await animate(
+        spans[i],
         { y: [-2, -8, 0] },
-        { delay: i * 0.03, duration: 0.4, easing: "ease-in-out" }
+        { duration: 0.4, delay: i * 0.03, ease: "easeInOut" }
       );
-    });
+    }
   };
 
   return (
