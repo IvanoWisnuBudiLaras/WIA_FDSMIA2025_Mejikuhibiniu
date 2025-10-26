@@ -1,95 +1,19 @@
-/* Root dan body */
-body {
-  margin: 0;
-  background: #fff;
-  color: #111;
-  font-family: "Inter", sans-serif;
-  overflow-x: hidden;
-}
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-/* Bagian atas (judul besar) */
-.showcase-header {
-  position: fixed;
-  top: 12vh;
-  left: 6vw;
-  z-index: 10;
-}
+:root {
+  --PrimaryColor: #1E40AF;
+  --SecondaryColor: #F59E0B;
+  --ThirdColor: #10B981;
+  --FourthColor: #EF4444;
 
-.showcase-header h1 {
-  font-size: clamp(3rem, 10vw, 9rem);
-  font-weight: 900;
-  letter-spacing: -2px;
-  line-height: 0.9;
-  margin: 0;
-}
+  --BackgroundColor: #F3F4F6;
+  --TextColor: #111827;
+  --TextFocus: #2563EB;
+  --WarningColor: #B45309;
+  --SuccessColor: #16A34A;
 
-.showcase-header p {
-  font-size: 1.3rem;
-  margin-top: 1rem;
-  color: #555;
-}
-
-/* Container horizontal */
-.hs-container {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  margin-top: 40vh; /* beri jarak agar teks atas terlihat */
-}
-
-.hs-track {
-  display: flex;
-  height: 50vh; /* tinggi setengah layar */
-  will-change: transform;
-  margin-top: 25vh;
-}
-
-/* Slide */
-.hs-slide {
-  min-width: 70vw;
-  height: 100%;
-  margin-right: 8vw;
-  position: relative;
-  overflow: hidden;
-  border-radius: 2rem;
-}
-
-.hs-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 2rem;
-  transition: transform 0.6s ease;
-}
-
-.hs-caption {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  color: white;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
-}
-
-.hs-caption h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.hs-caption p {
-  margin-top: 0.3rem;
-  font-size: 1rem;
-}
-
-/* Hilangkan scrollbar */
-::-webkit-scrollbar {
-  display: none;
-}
-* {
-  scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  display: none;
+  --fonttype: 'Montserrat', sans-serif;
 }
