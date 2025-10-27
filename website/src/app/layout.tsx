@@ -1,14 +1,7 @@
-// src/app/layout.tsx
-import type { Metadata } from "next";
-import {Inter } from "next/font/google";
+"use client";
+
 import "./globals.css";
-import PageTransition from "@/components/Effect/PageTransition";
-
-
-export const metadata: Metadata = {
-  title: "UMKM Tulungagung Showcase",
-  description: "Modern parallax scroll effect using Framer Motion + Next.js App Router",
-};
+import { ReactLenis } from "@studio-freight/react-lenis";
 
 export default function RootLayout({
   children,
@@ -16,14 +9,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    
-    <html lang="en">
-      <body className={` text-[var(--text-color)] antialiased`}>
-        <PageTransition>
-          <main className="page-content">{children}</main>
-        </PageTransition>
+    <html lang="id">
+      <body className="overflow-x-hidden">
+        <ReactLenis root>
+          <main className="overflow-hidden">{children}</main>
+        </ReactLenis>
       </body>
-      
     </html>
   );
 }

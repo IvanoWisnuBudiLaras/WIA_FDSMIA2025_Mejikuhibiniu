@@ -9,15 +9,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
-  "/eco.webp",
+  "/cafe.webp",
+  "/martabak.jpeg",
+  "/rin1.jpeg",
+  "/tb.jpeg",
+   "/eco.webp",
+  "/cafe.webp",
+  "/martabak.jpeg",
+  "/rin1.jpeg",
+  "/tb.jpeg",
 ];
 
 const HorizontalScroll: React.FC = () => {
@@ -97,7 +97,7 @@ const HorizontalScroll: React.FC = () => {
         style={{
           display: "flex",
           alignItems: "flex-end",
-          height: "100vh",
+          height: "99vh",
           paddingBottom: "5vh", // ruang di bawah
           gap: "0.5rem", // jarak antar foto tipis
         }}
