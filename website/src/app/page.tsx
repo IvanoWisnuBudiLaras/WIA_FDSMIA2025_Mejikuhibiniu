@@ -1,7 +1,8 @@
 import React from "react";
 import Hero from "@/components/Hero";
-import Why from "@/components/Why";
-import Purpose from "@/components/Purpose";
+import About from "@/components/About";
+import HorizontalScroll from "@/components/HorizontalScroll";
+
 import "./globals.css";
 
 export const metadata = {
@@ -13,8 +14,9 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <Why />
-      <Purpose />
+      <About />
+      <HorizontalScroll />
+      
     </main>
   );
 }
