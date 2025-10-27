@@ -15,8 +15,17 @@
   --WarningColor: #B45309;
   --SuccessColor: #16A34A;
 
-  --fonttype: 'Montserrat', sans-serif;
 }
+
+body[style*="overflow: hidden"] {
+  overscroll-behavior: contain;
+}
+
+.modal-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
 
 /* Global body + utilities */
 html, body, #__next { height: 100%; }

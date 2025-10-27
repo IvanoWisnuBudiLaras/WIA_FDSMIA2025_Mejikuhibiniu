@@ -1,7 +1,5 @@
-"use client";
-
 import "./globals.css";
-import { ReactLenis } from "@studio-freight/react-lenis";
+import LenisProvider from "../components/LenisProvider";
 
 export default function RootLayout({
   children,
@@ -11,9 +9,9 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className="overflow-x-hidden">
-        <ReactLenis root>
+        <LenisProvider>
           <main className="overflow-hidden">{children}</main>
-        </ReactLenis>
+        </LenisProvider>
       </body>
     </html>
   );
