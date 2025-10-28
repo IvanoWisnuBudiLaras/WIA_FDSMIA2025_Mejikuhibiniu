@@ -17,18 +17,12 @@ export default function LostGalleryWithModal() {
   const activeItem = activeIndex !== null ? data[activeIndex % data.length] : null;
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    
-    const timeline = gsap.timeline({ repeat: -1, defaults: { ease: "none" } });
-    const fullW = track.scrollWidth / 2;
-    const speed = 45;
-    timeline.to(track, { x: `-=${fullW / 2}px`, duration: speed });
-    
-    // cleanup harus void function, bukan return timeline
-    return () => {
-      timeline.kill();
-    };
+    // Intentionally removed automatic scrolling animation to keep the gallery
+    // stationary until the user interacts. Previously a GSAP timeline caused
+    // continuous horizontal motion which made the gallery feel auto-rotating.
+    // We keep `trackRef` available for potential programmatic control (drag/wheel)
+    // but avoid starting an auto loop here.
+    return () => {};
   }, []);
 
 
