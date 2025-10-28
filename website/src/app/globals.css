@@ -4,6 +4,7 @@
 @import 'tailwindcss/utilities';
 
 :root {
+  --Background: #0e0e0e;
   --PrimaryColor: #1E40AF;
   --SecondaryColor: #F59E0B;
   --ThirdColor: #10B981;
@@ -35,6 +36,15 @@ body {
   color: var(--TextColor);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.page-content {
+  opacity: 0;
+  transition: opacity 0.4s ease-out;
+}
+
+.transition-overlay {
+  transform: translateY(100%);
+  will-change: transform, opacity;
 }
 
 /* Hero styles */

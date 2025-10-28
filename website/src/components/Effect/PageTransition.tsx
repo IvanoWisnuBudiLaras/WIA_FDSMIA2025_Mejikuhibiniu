@@ -1,103 +1,159 @@
 "use client";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { useEffect, useRef } from "react";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function PageTransition({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const pathname = usePathname();
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef<HTMLDivElement | null>(null);
+
+  const [transitionText, setTransitionText] = useState("");
   const isTransitioning = useRef(false);
   const hasPlayedInitial = useRef(false);
-  const previousPathname = useRef<string | null>(null);
+  const prevPath = useRef<string | null>(null);
 
-  useEffect(() => {
-    if (!hasPlayedInitial.current) {
-      playEntryAnimation();
-      hasPlayedInitial.current = true;
-    }
-  }, []);
+  const getTextForPath = (path: string) => {
+    if (path === "/Showcase") return "Showcase";
+    return "";
+  };
 
-  const playEntryAnimation = () => {
-    const entryTL = gsap.timeline({
+  // Animasi keluar halaman
+  const exitPage = (url: string) => {
+    const overlay = overlayRef.current;
+    const text = textRef.current;
+    if (!overlay || !text) return;
+
+    setTransitionText(getTextForPath(url));
+    overlay.style.pointerEvents = "auto";
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power2.inOut" },
+      onComplete: () => router.push(url),
+    });
+
+    // Mulai dari bawah berbentuk oval
+    tl.set(overlay, {
+      y: "100%",
+      scaleX: 1.2,
+      scaleY: 0.6,
+      borderRadius: "50% / 25%",
+      opacity: 1,
+      zIndex: 9999,
+    });
+    tl.set(text, { opacity: 0, scale: 0.95 });
+
+    tl.to(".page-content", { opacity: 0, duration: 0.3 }, 0);
+
+    // Naik dan menutupi layar penuh (jadi background penuh)
+    tl.to(
+      overlay,
+      {
+        y: "0%",
+        scaleX: 1.1,
+        scaleY: 1.1,
+        borderRadius: "0%",
+        duration: 0.9,
+      },
+      0
+    );
+
+    // Munculkan teks di tengah
+    tl.to(text, { opacity: 1, scale: 1, duration: 0.4 }, "-=0.3");
+  };
+
+  // Animasi masuk halaman
+  const playEntry = (isRouteChange: boolean) => {
+    const overlay = overlayRef.current;
+    const text = textRef.current;
+    if (!overlay || !text) return;
+
+    const tl = gsap.timeline({
+      defaults: { ease: "power2.inOut" },
       onComplete: () => {
         isTransitioning.current = false;
+        prevPath.current = pathname;
+        gsap.to(overlay, { opacity: 0, duration: 0.6, delay: 0.3 });
+        overlay.style.pointerEvents = "none";
       },
     });
 
-    entryTL
-      .set(overlayRef.current, {
-        translateY: "100%",
-        scale: 0.5,
-        rotate: 30,
-      })
-      .to(overlayRef.current, {
-        translateY: "0%",
-        scale: 1,
-        rotate: 0,
-        duration: 0.8,
-        ease: "power2.inOut",
-      })
-      .to(".page-content", {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.inOut",
-      });
+    if (isRouteChange) {
+      // Hilang ke atas, jadi oval lagi
+      tl.to(text, { opacity: 0, scale: 0.95, duration: 0.3 }, 0);
+      tl.to(
+        overlay,
+        {
+          y: "-100%",
+          scaleX: 1.2,
+          scaleY: 0.6,
+          borderRadius: "50% / 25%",
+          duration: 0.9,
+        },
+        "-=0.1"
+      );
+    }
+
+    tl.to(".page-content", { opacity: 1, duration: 0.6 }, "-=0.3");
   };
 
   useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
+    const handleClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const link = target.closest("a[href^='/']") as HTMLAnchorElement | null;
       if (!link) return;
 
-      e.preventDefault();
-      const url = new URL(link.href).pathname;
+      const url = new URL(link.href, window.location.origin).pathname;
+      if (url === pathname || isTransitioning.current) return;
 
-      if (!isTransitioning.current && url !== window.location.pathname) {
-        isTransitioning.current = true;
-        exitPage(url);
-      }
+      e.preventDefault();
+      isTransitioning.current = true;
+      hasPlayedInitial.current = false;
+      exitPage(url);
     };
 
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
+    const links = document.querySelectorAll("a[href^='/']") as NodeListOf<HTMLAnchorElement>;
+    links.forEach((link) => link.addEventListener("click", handleClick));
+    return () => {
+      links.forEach((link) => link.removeEventListener("click", handleClick));
+    };
+  }, [pathname, router]);
+
+  useEffect(() => {
+    if (hasPlayedInitial.current && !isTransitioning.current) return;
+    const isRouteChange = prevPath.current !== null;
+    playEntry(isRouteChange);
+    hasPlayedInitial.current = true;
+  }, [pathname]);
+
+  useEffect(() => {
+    setTransitionText(getTextForPath(pathname));
   }, []);
-
-  const exitPage = (url: string) => {
-    const exitTL = gsap.timeline({
-      onComplete: () => {
-        window.location.assign(url);
-      },
-    });
-
-    exitTL
-      .to(".page-content", {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-      })
-      .to(
-        overlayRef.current,
-        {
-          translateY: "-200%",
-          scale: 0.5,
-          rotate: 30,
-          duration: 0.8,
-          ease: "power2.inOut",
-        },
-        "-=0.3"
-      );
-  };
 
   return (
     <>
+      {/* Overlay transition */}
       <div
         ref={overlayRef}
-        className="transition-overlay fixed top-0 left-0 z-[9999] h-full w-full bg-[var(--Background)] pointer-events-none"
-      />
-      {children}
+        className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-[var(--Background)] opacity-0 translate-y-full pointer-events-none z-[9999]"
+        style={{
+          borderRadius: "50% / 25%",
+        }}
+      >
+        <div
+          ref={textRef}
+          className="text-[clamp(1.5rem,4vw,3rem)] font-semibold text-white opacity-0 tracking-[0.15em]"
+        >
+          {transitionText}
+        </div>
+      </div>
+
+      <div className="page-content min-h-screen">{children}</div>
     </>
   );
 }

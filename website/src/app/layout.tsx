@@ -1,7 +1,8 @@
+"use client";
 import "./globals.css";
-import LenisProvider from "../components/LenisProvider";
+import PageTransition from "@/components/Effect/PageTransition";
 import { ReactLenis } from "@studio-freight/react-lenis";
-import PageTransition from "@/components/Effect/PageTransition"
+import LenisProvider from "../components/LenisProvider";
 
 export default function RootLayout({
   children,
@@ -11,13 +12,12 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className="overflow-x-hidden">
-        <LenisProvider>
-          <main className="overflow-hidden">{children}</main>
-        </LenisProvider>
         <PageTransition>
-          <ReactLenis root>
-          <main className="page-content overflow-hidden">{children}</main>
-        </ReactLenis>
+          <LenisProvider>
+            <ReactLenis root>
+              <main className="overflow-hidden">{children}</main>
+            </ReactLenis>
+          </LenisProvider>
         </PageTransition>
       </body>
     </html>
