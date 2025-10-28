@@ -4,16 +4,12 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import ShowcaseButton from "@/components/showcasebtn";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const images = [
   "/eco.webp",
-  "/cafe.webp",
-  "/martabak.jpeg",
-  "/rin1.jpeg",
-  "/tb.jpeg",
-   "/eco.webp",
   "/cafe.webp",
   "/martabak.jpeg",
   "/rin1.jpeg",
@@ -77,7 +73,7 @@ const HorizontalScroll: React.FC = () => {
             margin: 0,
           }}
         >
-          IN YOUR
+          MOST
         </h1>
         <h1
           style={{
@@ -87,7 +83,7 @@ const HorizontalScroll: React.FC = () => {
             margin: 0,
           }}
         >
-          FEED
+          POPULAR
         </h1>
       </div>
 
@@ -97,8 +93,8 @@ const HorizontalScroll: React.FC = () => {
         style={{
           display: "flex",
           alignItems: "flex-end",
-          height: "99vh",
-          paddingBottom: "5vh", // ruang di bawah
+          height: "100vh",
+          paddingBottom: "1vh", // ruang di bawah
           gap: "0.5rem", // jarak antar foto tipis
         }}
       >
@@ -132,6 +128,7 @@ const HorizontalScroll: React.FC = () => {
           </div>
         ))}
       </div>
+      <ShowcaseButton/>
     </section>
   );
 };

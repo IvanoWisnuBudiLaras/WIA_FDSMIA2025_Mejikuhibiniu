@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import VelocityScroll from "@/components/Effect/scroll-velocity";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -131,6 +132,9 @@ export default function Hero() {
         >
           Mendukung usaha mikro, kecil & menengah
         </motion.div>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full">
+        <VelocityScroll text="scroll more ⏬" default_velocity={3} className="sm:text-2xl md:text-4xl milker-font bg-alt-white text-alt-black py-4"/>
       </div>
     </section>
   );
