@@ -40,9 +40,9 @@ export default function PageTransition({
     // Mulai dari bawah berbentuk oval
     tl.set(overlay, {
       y: "100%",
-      scaleX: 1.2,
-      scaleY: 0.6,
-      borderRadius: "50% / 25%",
+      scaleX: 1,
+      scaleY: 1,
+      borderRadius: "10% / 90%",
       opacity: 1,
       zIndex: 9999,
     });
@@ -55,8 +55,8 @@ export default function PageTransition({
       overlay,
       {
         y: "0%",
-        scaleX: 1.1,
-        scaleY: 1.1,
+        scaleX: 1,
+        scaleY: 1,
         borderRadius: "0%",
         duration: 0.9,
       },
@@ -89,10 +89,10 @@ export default function PageTransition({
       tl.to(
         overlay,
         {
-          y: "-100%",
-          scaleX: 1.2,
-          scaleY: 0.6,
-          borderRadius: "50% / 25%",
+          y: "100%",
+          scaleX: 1,
+          scaleY: 1,
+          borderRadius: "10% / 90%",
           duration: 0.9,
         },
         "-=0.1"

@@ -16,7 +16,6 @@ export default function Page() {
       <Hero />
       <About />
       <HorizontalScroll />
-      
     </main>
   );
 }
