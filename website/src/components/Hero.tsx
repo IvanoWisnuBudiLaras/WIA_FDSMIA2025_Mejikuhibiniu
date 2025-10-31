@@ -134,7 +134,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <div className="absolute bottom-0 left-0 w-full">
-        <VelocityScroll text="scroll more ⏬" default_velocity={3} className="sm:text-2xl md:text-4xl milker-font bg-alt-white text-alt-black py-4"/>
+        <VelocityScroll text="scroll more ⩔" default_velocity={3} className="sm:text-2xl md:text-4xl milker-font bg-alt-white text-alt-black py-4"/>
       </div>
     </section>
   );

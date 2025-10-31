@@ -4,7 +4,6 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import ShowcaseButton from "@/components/showcasebtn";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,7 +127,6 @@ const HorizontalScroll: React.FC = () => {
           </div>
         ))}
       </div>
-      <ShowcaseButton/>
     </section>
   );
 };

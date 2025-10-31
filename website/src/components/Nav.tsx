@@ -1,7 +1,6 @@
 // website/src/components/Nav.tsx
 const navigation = [
     { name: "Beranda", href: "/" },
-    { name: "Showcase", href: "/Showcase" },
     { name: "Kontak", href: "/Contact" },
 ];
 import Link from "next/link";
