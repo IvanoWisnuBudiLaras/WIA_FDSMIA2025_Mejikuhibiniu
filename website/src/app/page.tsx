@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import HorizontalScroll from "@/components/HorizontalScroll";
+import AboutPage from "@/app/about/page";
+import SmoothScroll from "@/components/SmoothScroll";
 
 import "./globals.css";
 
@@ -14,8 +14,8 @@ export default function Page() {
   return (
     <main>
       <Hero />
-      <About />
-      <HorizontalScroll />
+      <SmoothScroll />
+      <AboutPage />
     </main>
   );
 }
