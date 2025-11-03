@@ -1,8 +1,23 @@
 "use client";
+import { ReactNode, useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
 
-import React from "react";
-import { ReactLenis } from "@studio-freight/react-lenis";
+export default function LenisProvider({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
-export default function LenisProvider({ children }: { children: any }) {
-  return <ReactLenis root>{children}</ReactLenis>;
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
+
+  return <>{children}</>;
 }

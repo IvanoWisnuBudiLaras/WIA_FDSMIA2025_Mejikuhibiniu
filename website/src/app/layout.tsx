@@ -1,8 +1,20 @@
 "use client";
 import "./globals.css";
-import PageTransition from "@/components/Effect/PageTransition";
+import { Montserrat } from "next/font/google";
+import PageTransition from "@/components/PageTranstion";
 import { ReactLenis } from "@studio-freight/react-lenis";
-import LenisProvider from "../components/LenisProvider";
+import LenisProvider from "@/components/LenisProvider";
+
+const metadata = {
+  title: "TulungUsaha",
+  description: "Best Indonesian UMKM Showcase",
+};
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 
 export default function RootLayout({
   children,
@@ -20,6 +32,6 @@ export default function RootLayout({
           </LenisProvider>
         </PageTransition>
       </body>
-    </html>
-  );
+    </html>
+  );
 }

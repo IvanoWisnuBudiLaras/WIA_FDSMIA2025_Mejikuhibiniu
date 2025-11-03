@@ -72,6 +72,7 @@ export default function VelocityScroll({
       return () => window.removeEventListener("resize", calculateRepetitions);
     }, [children]);
 
+    // transform uses a template string to produce a percentage value
     const x = useTransform(baseX, (v) => `${wrap(-100 / repetitions, 0, v)}%`);
 
     const directionFactor = React.useRef<number>(1);
@@ -113,3 +114,4 @@ export default function VelocityScroll({
     </section>
   );
 }
+

@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
 :root {
-  --Background: #0e0e0e;
+  --Background: rgb(27, 60, 83);
   --PrimaryColor: #1E40AF;
   --SecondaryColor: #F59E0B;
   --ThirdColor: #10B981;
@@ -15,8 +14,18 @@
   --TextFocus: #2563EB;
   --WarningColor: #B45309;
   --SuccessColor: #16A34A;
-
 }
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* biar scroll = horizontal movement */
+  background-color: #fff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   background-color: #faf8f4;
@@ -58,7 +67,7 @@ body {
   place-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, var(--SecondaryColor) 0%, var(--Background) 100%);
+  background: linear-gradient(90deg, var(--PrimaryColor) 0%, var(--TextFocus) 100%);
   color: rgba(255,255,255,0.95);
 }
 

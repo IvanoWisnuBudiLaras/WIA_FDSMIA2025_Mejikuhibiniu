@@ -1,21 +1,14 @@
 import React from "react";
-import Hero from "@/components/Hero";
-import About from "@/components/About";
-import HorizontalScroll from "@/components/HorizontalScroll";
-
-import "./globals.css";
-
-export const metadata = {
-  title: "UMKM Showcase",
-  description: "Landing page UMKM dengan parallax & desain Awwwards-inspired",
-};
+import Hero from "@/components/hero";
+import AboutPage from "@/components/about";
+import FloatingGallery from "@/components/FloatingGallery";
 
 export default function Page() {
   return (
     <main>
       <Hero />
-      <About />
-      <HorizontalScroll />
+      <FloatingGallery />
+      <AboutPage />
     </main>
-  );
+  );
 }

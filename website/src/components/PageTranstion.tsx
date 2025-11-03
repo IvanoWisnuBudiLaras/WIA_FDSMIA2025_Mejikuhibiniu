@@ -154,6 +154,6 @@ export default function PageTransition({
       </div>
 
       <div className="page-content min-h-screen">{children}</div>
-    </>
-  );
+    </>
+  );
 }
