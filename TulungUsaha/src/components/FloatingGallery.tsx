@@ -51,11 +51,10 @@ export default function FloatingGalleryWrapper() {
 
 // ======================= FLOATING GALLERY =======================
 function FloatingGallery() {
+  console.log("FloatingGallery rendered, gallery data length:", gallery.length);
   return (
     <div className="relative w-full min-h-[200vh] overflow-hidden bg-gradient-to-br from-yellow-50 via-pink-50 to-blue-50">
-      <ReactLenis root options={{ lerp: 0.07, smoothWheel: true }}>
-        <Gallery />
-      </ReactLenis>
+      <Gallery />
     </div>
   );
 }

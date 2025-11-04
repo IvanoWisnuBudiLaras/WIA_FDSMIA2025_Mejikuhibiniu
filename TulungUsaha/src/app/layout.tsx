@@ -27,7 +27,7 @@ export default function RootLayout({
         <PageTransition>
           <LenisProvider>
             <ReactLenis root>
-              <main className="overflow-hidden">{children}</main>
+              <main>{children}</main>
             </ReactLenis>
           </LenisProvider>
         </PageTransition>

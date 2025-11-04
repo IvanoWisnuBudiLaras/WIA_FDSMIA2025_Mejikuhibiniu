@@ -10,7 +10,12 @@ import galleryData from "@/data/Gallery.json";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
-  const container = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    console.log("AboutPage mounted");
+    console.log("Gallery data:", galleryData);
+  }, []);
 
   // Transisi background antar section
   useEffect(() => {
@@ -102,7 +107,7 @@ export default function AboutPage() {
                 className="flex flex-col items-center"
               >
                 <div className="w-20 h-20 rounded-full border-2 border-[#1E40AF] flex items-center justify-center mb-3">
-                  <span className="text-4xl">𐀪</span>
+                  <span className="text-4xl">🏪</span>
                 </div>
                 <h4 className="font-semibold text-lg">{item.level}</h4>
                 <p className="text-2xl font-bold text-[#1E40AF]">{item.count}</p>
@@ -149,7 +154,7 @@ export default function AboutPage() {
               <h3 className="font-bold text-lg mb-1">{item.Nama}</h3>
               {/* 1 paragraf reveal saja */}
               <RevealText
-                text={item.Deskripsi}
+                text={item.Dheskripsi}
                 className="text-sm text-gray-600 line-clamp-3"
               />
             </div>
