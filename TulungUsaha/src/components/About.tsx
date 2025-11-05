@@ -10,7 +10,7 @@ import galleryData from "@/data/Gallery.json";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutPage() {
-  const mainRef = useRef<HTMLDivElement>(null);
+  const container = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     console.log("AboutPage mounted");
