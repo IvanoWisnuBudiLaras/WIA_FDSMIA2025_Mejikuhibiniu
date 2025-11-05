@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import { Montserrat } from "next/font/google";
+import { GrandBold } from "@/lib/Fonts";
 import PageTransition from "@/components/PageTranstion";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import LenisProvider from "@/components/LenisProvider";
@@ -10,10 +10,7 @@ const metadata = {
   description: "Best Indonesian UMKM Showcase",
 };
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  display: "swap",
-});
+const grandBold = GrandBold;
 
 
 export default function RootLayout({
