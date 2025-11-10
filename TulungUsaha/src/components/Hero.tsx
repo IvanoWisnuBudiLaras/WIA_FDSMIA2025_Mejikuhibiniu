@@ -7,23 +7,25 @@ import VelocityScroll from "./scroll-velocity";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const diamonds = [
-  { x: "8%", y: "18%", size: 44 },
-  { x: "22%", y: "60%", size: 36 },
-  { x: "78%", y: "22%", size: 52 },
-  { x: "90%", y: "60%", size: 40 },
-  { x: "34%", y: "8%", size: 30 },
+const shapes = [
+  { x: "8%", y: "90%", size: 44, shape: "diamond" },
+  { x: "20%", y: "85%", size: 36, shape: "square" },
+  { x: "35%", y: "95%", size: 40, shape: "circle" },
+  { x: "55%", y: "88%", size: 48, shape: "triangle" },
+  { x: "70%", y: "92%", size: 52, shape: "diamond" },
+  { x: "85%", y: "87%", size: 38, shape: "circle" },
+  { x: "45%", y: "94%", size: 32, shape: "square" },
 ];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const headlineRef = useRef<HTMLHeadingElement | null>(null);
   const subtitleRef = useRef<HTMLDivElement | null>(null);
-  const diamondRefs = useRef<HTMLDivElement[]>([]);
+  const shapeRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 🟦 Parallax background movement
+      // 🔵 Parallax background
       gsap.to(containerRef.current, {
         backgroundPosition: "50% 40%",
         ease: "none",
@@ -35,35 +37,31 @@ export default function Hero() {
         },
       });
 
-      // 🟨 Floating diamonds movement
-      diamondRefs.current.forEach((el, i) => {
-        gsap.to(el, {
-          y: (i % 2 === 0 ? -60 : 60),
-          rotation: 45,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-          duration: 6 + i,
-          delay: 0.2 * i,
-        });
+      // 🟣 Floating shapes (naik + rotasi acak)
+      shapeRefs.current.forEach((el, i) => {
+        const randomDuration = 6 + Math.random() * 5;
+        const randomDelay = Math.random() * 4;
+        const randomRotate = 180 + Math.random() * 180;
 
-        // Scroll-trigger subtle horizontal parallax
         gsap.to(el, {
-          xPercent: (i % 2 === 0 ? -8 : 8),
+          y: -600 - Math.random() * 400, // gerak ke atas
+          rotation: randomRotate,
           ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.7,
+          duration: randomDuration,
+          delay: randomDelay,
+          repeat: -1,
+          yoyo: false,
+          onRepeat: () => {
+            // reset ke bawah tiap loop
+            gsap.set(el, { y: 0, rotation: 0 });
           },
         });
       });
 
-      // 🟥 PARALLAX TEXT EFFECT (hero headline)
+      // 🟥 Parallax teks
       if (headlineRef.current) {
         gsap.to(headlineRef.current, {
-          yPercent: -25, // gerak ke atas 25% saat scroll
+          yPercent: -25,
           ease: "none",
           scrollTrigger: {
             trigger: containerRef.current,
@@ -74,10 +72,9 @@ export default function Hero() {
         });
       }
 
-      // 🟩 Parallax untuk subtitle
       if (subtitleRef.current) {
         gsap.to(subtitleRef.current, {
-          yPercent: -50, // lebih cepat biar terasa depth
+          yPercent: -50,
           opacity: 0.8,
           ease: "none",
           scrollTrigger: {
@@ -93,25 +90,40 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  const shapeClass = (shape: string) => {
+    switch (shape) {
+      case "circle":
+        return "shape circle";
+      case "square":
+        return "shape square";
+      case "triangle":
+        return "shape triangle";
+      default:
+        return "shape diamond";
+    }
+  };
+
   return (
     <section ref={containerRef} className="hero" role="banner" aria-label="Hero UMKM">
-      {/* floating decorative diamonds */}
-      {diamonds.map((d, idx) => (
+      {/* Floating Shapes */}
+      {shapes.map((s, idx) => (
         <div
           key={idx}
-          ref={(el) => { if (el) diamondRefs.current[idx] = el; }}
-          className="diamond"
+          ref={(el) => {
+            if (el) shapeRefs.current[idx] = el;
+          }}
+          className={shapeClass(s.shape)}
           style={{
-            left: d.x,
-            top: d.y,
-            width: d.size,
-            height: d.size,
+            left: s.x,
+            top: s.y,
+            width: s.size,
+            height: s.size,
           }}
           aria-hidden
-        />
+        ></div>
       ))}
 
-      {/* Text content with parallax */}
+      {/* Text content */}
       <div className="text-center relative z-10">
         <motion.h1
           ref={headlineRef}
@@ -120,7 +132,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="headline"
         >
-         Welcome<br />  To UMKM
+          Welcome <br /> To UMKM
         </motion.h1>
 
         <motion.div
@@ -133,9 +145,7 @@ export default function Hero() {
           Mendukung usaha mikro, kecil & menengah
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full">
-        <VelocityScroll text="scroll more ⩔" default_velocity={3} className="sm:text-2xl md:text-4xl milker-font bg-alt-white text-alt-black py-4"/>
-      </div>
+
     </section>
-  );
+  );
 }
