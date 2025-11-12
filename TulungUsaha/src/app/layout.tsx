@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="overflow-x-hidden">
+      <body className={`${grandBold.className} overflow-x-hidden`}>
         <PageTransition>
           <LenisProvider>
             <ReactLenis root>
@@ -29,6 +29,6 @@ export default function RootLayout({
           </LenisProvider>
         </PageTransition>
       </body>
-    </html>
-  );
+   </html>
+  );
 }
