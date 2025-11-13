@@ -11,8 +11,6 @@ const metadata = {
 };
 
 const grandBold = GrandBold;
-
-
 export default function RootLayout({
   children,
 }: {
