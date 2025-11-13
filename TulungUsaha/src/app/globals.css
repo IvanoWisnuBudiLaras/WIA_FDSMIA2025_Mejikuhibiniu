@@ -43,7 +43,7 @@ body {
 html, body, #__next, main { height: 100%; }
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--PrimaryColor) !important;
+  background: #ffffff !important;
   color: var(--TextColor);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -65,8 +65,8 @@ body {
   place-items: center;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, var(--PrimaryColor) 0%, var(--TextFocus) 100%);
-  color: rgba(255,255,255,0.95);
+  background: #ffffff;
+  color: var(--TextColor);
 }
 
 /* Giant headline */
@@ -78,6 +78,7 @@ body {
   text-transform: uppercase;
   font-size: clamp(3.5rem, 9vw, 12rem);
   text-shadow: 0 2px 0 rgba(0,0,0,0.06);
+  color: var(--TextColor);
 }
 /* Responsive tweaks */
 @media (max-width: 767px) {
@@ -99,9 +100,9 @@ body {
 /* Floating shape base */
 .shape {
   position: absolute;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
   pointer-events: none;
+  opacity: 0.85;
 }
 
 /* Variasi bentuk */
@@ -119,12 +120,11 @@ body {
 }
 
 .shape.triangle {
-  background: none;
+  background: none !important;
   width: 0;
   height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 26px solid rgba(255, 255, 255, 0.15);
 }
 
 /* subtitle */
@@ -133,6 +133,7 @@ body {
   letter-spacing: 0.25em;
   margin-top: 1.25rem;
   opacity: 0.95;
+  color: var(--TextColor);
 }
 
 
@@ -156,11 +157,7 @@ body {
   justify-content: center;
   padding: 10vh 8vw;
   position: relative;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-}
-
-.color-section:nth-child(even) {
-  background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+  background: #ffffff;
 }
 
 /* CSS untuk Showcase Page - Gaya Minimalis seperti 100lostspecies */

@@ -1,17 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useScroll, useTransform, useAnimation } from "framer-motion";
 import { useEffect, useRef } from "react";
 import galleryData from "@/data/Gallery.json";
 
 const gallery = (galleryData as any[]) || [];
 const images = gallery.map((g) => g.Gambar).filter(Boolean);
+const PLACEHOLDER =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
 export default function FloatingGalleryWrapper() {
   return (
-    <div className="relative w-full min-h-[240vh] bg-transparent overflow-hidden">
+    <div className="relative w-full min-h-[240vh] bg-white overflow-hidden">
       <FloatingGallery />
-      {/* Bagian bawah biar nggak kosong */}
+
+      {/* Bagian bawah biar gak kosong */}
       <div className="absolute bottom-0 left-0 w-full h-[25vh] flex flex-col justify-center items-center bg-gradient-to-t from-white/5 via-transparent to-transparent backdrop-blur-sm">
         <p className="text-neutral-600 text-sm tracking-wide mb-1">
           Explore More Visuals
@@ -39,7 +43,7 @@ function FloatingGallery() {
     offset: ["start end", "end start"],
   });
 
-  // Posisi manual, campur portrait-landscape
+  // Posisi tetap proporsional, gak tumpuk
   const positions = [
     { x: "10%", y: "5%", w: "12vw", h: "17vw" },
     { x: "28%", y: "6%", w: "14vw", h: "10vw" },
@@ -76,7 +80,6 @@ function FloatingGallery() {
           y={pos.y}
           w={pos.w}
           h={pos.h}
-          scrollYProgress={scrollYProgress}
           index={i}
         />
       ))}
@@ -90,7 +93,6 @@ function FloatingImage({
   y,
   w,
   h,
-  scrollYProgress,
   index,
 }: {
   src: string;
@@ -98,19 +100,26 @@ function FloatingImage({
   y: string;
   w: string;
   h: string;
-  scrollYProgress: any;
   index: number;
 }) {
   const controls = useAnimation();
-  const translateY = useTransform(scrollYProgress, [0, 1], [0, index % 2 ? -8 : 8]);
 
   useEffect(() => {
+    // Variasi kecepatan berdasarkan index untuk konsistensi
+    const baseSpeed = 8 + (index % 5) * 2.5; // 8, 10.5, 13, 15.5, 18 detik
+    const distance = 15 + (index % 7) * 5; // variasi jarak 15-45px
+    
+    // Pola gerakan berbeda per gambar
+    const direction = index % 3 === 0 ? 1 : -1;
+    const delay = (index * 0.3) % 2; // stagger start
+
     controls.start({
-      y: [0, -3, 3, -2, 0],
+      y: [0, distance * direction, -distance * direction * 0.8, 0],
       transition: {
-        duration: 7 + index * 0.2,
+        duration: baseSpeed,
         repeat: Infinity,
         ease: "easeInOut",
+        delay,
       },
     });
   }, [controls, index]);
@@ -122,14 +131,28 @@ function FloatingImage({
         position: "absolute",
         top: y,
         left: x,
-        y: translateY,
         width: w,
         height: h,
         transform: "translate(-50%, 0)",
       }}
-      className="rounded-2xl overflow-hidden bg-white/10 backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.08)] hover:scale-[1.04] transition-transform duration-500"
+      className="relative rounded-2xl overflow-hidden bg-gray-100 backdrop-blur-sm shadow-[0_8px_32px_rgba(0,0,0,0.1)] border border-gray-300 hover:border-gray-400 hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] hover:scale-[1.05] transition-all duration-700 ease-out"
     >
-      <img src={src} alt="" className="w-full h-full object-cover" loading="lazy" />
+      <Image
+        src={src || PLACEHOLDER}
+        alt={""}
+        fill
+        className="object-cover"
+        sizes="(max-width: 640px) 40vw, 12vw"
+        onError={(e) => {
+          try {
+            const target = e.currentTarget as HTMLImageElement;
+            target.src = PLACEHOLDER;
+          } catch (err) {
+            /* ignore */
+          }
+        }}
+        unoptimized
+      />
     </motion.div>
   );
 }
