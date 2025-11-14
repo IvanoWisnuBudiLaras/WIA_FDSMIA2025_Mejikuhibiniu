@@ -140,7 +140,7 @@ export default function PageTransition({
       {/* Overlay transition */}
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-[var(--Background)] opacity-0 translate-y-full pointer-events-none z-[9999]"
+        className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-stone-800 opacity-0 translate-y-full pointer-events-none z-[9999]"
         style={{
           borderRadius: "50% / 25%",
         }}

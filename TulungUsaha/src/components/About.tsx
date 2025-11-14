@@ -45,7 +45,7 @@ export default function AboutPage() {
   return (
     <main
       ref={container}
-      className="transition-colors duration-1000 text-[#0f172a] overflow-x-hidden"
+      className="transition-colors duration-1000 text-stone-800 overflow-x-hidden"
     >
       {/* SECTION 1 & 2 - Left and Right aligned */}
       <ColorSection>
@@ -54,31 +54,31 @@ export default function AboutPage() {
           <div className="space-y-5 text-left">
             <RevealText
               text="UMKM"
-              className="text-4xl md:text-6xl font-extrabold text-black"
+              className="text-4xl md:text-6xl font-extrabold text-stone-800"
             />
             <RevealText
               text="TULUNGAGUNG"
-              className="text-4xl md:text-6xl font-extrabold text-black"
+              className="text-4xl md:text-6xl font-extrabold text-stone-800"
             />
             <RevealText
               text="UMKM Tulungagung adalah tempat berkumpulnya para pelaku usaha kreatif yang menghadirkan produk penuh inovasi dan kualitas terbaik dari daerah."
-              className="text-lg text-black"
+              className="text-lg text-stone-800"
             />
           </div>
           
           {/* Right side - Website purpose */}
           <div className="space-y-5 text-left md:col-start-2 md:row-start-2">
             <RevealText
-              text="Terus Website ini"
-              className="text-4xl md:text-6xl font-semibold text-black"
+              text="Terus Website"
+              className="text-4xl md:text-6xl font-semibold text-stone-800"
             />
             <RevealText
-              text="buat apa?"
-              className="text-4xl md:text-6xl font-semibold text-black"
+              text="ini buat apa?"
+              className="text-4xl md:text-6xl font-semibold text-stone-800"
             />
             <RevealText
               text="Website ini dibuat untuk memperkenalkan dan memajukan UMKM Tulungagung agar dikenal luas oleh masyarakat, serta membantu pelaku usaha meningkatkan kepercayaan pelanggan."
-              className="text-lg text-black"
+              className="text-lg text-stone-800"
             />
           </div>
         </div>
@@ -88,11 +88,11 @@ export default function AboutPage() {
       <ColorSection>
         <RevealText
           text="TulungUsaha membantu UMKM "
-          className="text-3xl md:text-6xl font-bold text-center text-black"
+          className="text-3xl md:text-6xl font-bold text-center text-stone-800"
         />
         <RevealText
           text="sebanyak"
-          className="text-3xl md:text-6xl font-bold mb-10 text-center text-black"
+          className="text-3xl md:text-6xl font-bold mb-10 text-center text-stone-800"
         />
         <div className="grid grid-cols-3 gap-4 md:gap-12 text-center">
           {[{ level: "MICRO", count: 10 }, { level: "KECIL", count: 5 }, { level: "MENENGAH", count: 10 }].map(
@@ -103,13 +103,13 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.2 }}
                 viewport={{ once: true }}
-                className="flex flex-col items-center text-black"
+                className="flex flex-col items-center text-stone-800"
               >
-                <div className="w-20 h-20 rounded-full border-2 border-black flex items-center justify-center mb-3">
+                <div className="w-20 h-20 rounded-full border-2 border-stone-800 flex items-center justify-center mb-3">
                   <span className="text-4xl">🏪</span>
                 </div>
-                <h4 className="font-semibold text-lg text-black">{item.level}</h4>
-                <p className="text-2xl font-bold text-black">{item.count}</p>
+                <h4 className="font-semibold text-lg text-stone-800">{item.level}</h4>
+                <p className="text-2xl font-bold text-stone-800">{item.count}</p>
               </motion.div>
             )
           )}
@@ -119,9 +119,13 @@ export default function AboutPage() {
       {/* SECTION 4 (sebelumnya SECTION 5) */}
       <ColorSection>
         <RevealText
-          text="Dan jika kalian masih belum puas, kami memiliki lebih banyak UMKM yang bisa kalian jelajahi untuk melihat betapa luas dan kreatifnya UMKM Tulungagung."
-          className="text-lg text-center text-black mb-10"
+          text="Dan jika kalian masih belum puas, kami memiliki lebih banyak UMKM yang bisa kalian jelajahi"
+          className="text-lg text-center text-stone-800"
         />
+        <RevealText
+          text="untuk melihat betapa luas dan kreatifnya UMKM Tulungagung."
+          className="text-lg text-center text-stone-800 mb-10"
+        /> 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -135,15 +139,15 @@ export default function AboutPage() {
               whileHover="hover"
               whileTap="tap"
               variants={{
-                rest: { backgroundColor: "#4f46e5", color: "#ffffff" },
-                hover: { backgroundColor: "#2563eb", color: "#ffffff" },
+                rest: { backgroundColor: "#292524"},
+                hover: { backgroundColor: "#1c1917"},
                 tap: { scale: 0.98 },
               }}
-              className="relative px-8 py-4 text-base font-semibold rounded-full focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all shadow-lg overflow-hidden"
+              className="relative px-8 py-4 text-white font-semibold rounded-full focus:outline-none focus:ring-4 focus:ring-white transition-all shadow-lg overflow-hidden"
             >
               {/* Shine overlay */}
               <motion.span
-                aria-hidden
+                aria-hidden="true"
                 className="absolute left-0 top-0 h-full w-40 bg-gradient-to-r from-white/60 to-white/10 transform -skew-x-12"
                 variants={{
                   rest: { x: -160, opacity: 0 },
@@ -291,7 +295,7 @@ function RevealText({
           whileInView={{ x: "105%" }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
           viewport={{ once: true }}
-          className="absolute top-0 left-0 h-full bg-[#ffef0f] z-10 rounded-md"
+          className="absolute top-0 left-0 h-full bg-stone-700 z-10 rounded-md"
           style={{ width: "100%" }}
         />
         <motion.span

@@ -136,19 +136,6 @@ body {
   color: var(--TextColor);
 }
 
-
-/* small decorative avatar (example) */
-.avatar-fab {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  width: 60px;
-  height: 60px;
-  border-radius: 999px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(2,6,23,0.24);
-}
-
 /* About section styles */
 .color-section {
   min-height: 100vh;

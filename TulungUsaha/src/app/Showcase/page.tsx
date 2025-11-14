@@ -26,7 +26,7 @@ export default function ShowcasePage() {
         <div className="max-w-7xl mx-auto px-8 py-6">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
             <div>
-              <h1 className="text-3xl font-thin text-stone-800 tracking-wide">Showcase</h1>
+              <h1 className="text-3xl font-thin text-stone-800 tracking-wide">TulungUsaha</h1>
               <p className="text-stone-500 text-sm mt-1 font-light">Discover our curated collection</p>
             </div>
             
